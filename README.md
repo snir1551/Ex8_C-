@@ -1,11 +1,6 @@
 <div dir="rtl" lang="he">
 
-<img
-src=“WarGame.jpg”
-raw=true
-alt=“Subject Pronouns”
-style=“margin-right: 10px;”
-/>
+<img src="./UML WarGame.jpg">
 
 
 
