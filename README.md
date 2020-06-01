@@ -1,7 +1,7 @@
 <div dir="rtl" lang="he">
 
 <img
-src=“https://github.com/snir1551/Ex8_C-/blob/master/UML%20WarGame.jpg”
+src=“WarGame.jpg”
 raw=true
 alt=“Subject Pronouns”
 style=“margin-right: 10px;”
