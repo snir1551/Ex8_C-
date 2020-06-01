@@ -1,5 +1,8 @@
 <div dir="rtl" lang="he">
 
+https://github.com/snir1551/Ex8_C-/blob/master/UML%20WarGame.jpg
+
+
 # משחק מלחמה - שלב א
 
 במטלה זו עליכם לתכנן משחק מלחמה לשני שחקנים על לוח מלבני.
