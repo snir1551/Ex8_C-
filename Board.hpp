@@ -94,6 +94,8 @@ class Board {
     std::pair<int,int> locationSoldier(const Soldier* source) const;
 
     void clear();
+
+    void removeDeadSoldiers();
            
 
 
