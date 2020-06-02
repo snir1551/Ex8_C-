@@ -17,7 +17,7 @@ namespace WarGame {
     {
         return "SN";
     }
-    void Sniper::attack(Board& board) const
+    void Sniper::attack(const Board& board) const
     {
         Soldier* target = board.mostCurrentHealth(this);
         target->setHealth(target->getHealth()-this->getDamage());

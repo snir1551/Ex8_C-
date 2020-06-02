@@ -63,6 +63,8 @@ namespace WarGame {
         {
             throw std::invalid_argument("exist player in the location target move");
         }
+
+        board[targetRow][targetCol]->attack(this);
         board[targetRow][targetCol] = board[source.first][source.second];
         board[source.first][source.second] = nullptr;
     }
@@ -114,7 +116,7 @@ namespace WarGame {
        std::cout << std::endl;
     }
 
-    Soldier* Board::getCloseToEnemy(Soldier* source) const
+    Soldier* Board::getCloseToEnemy(const Soldier* source) const
     {
         double min = -1.0;
         Soldier* minSoldier = nullptr;

@@ -9,7 +9,7 @@ namespace WarGame {
             FootSoldier(int numPlayer);
             FootSoldier(int numPlayer,int health, int damage);
             const char* letter() const;
-            void attack(Board& board) const;
+            void attack(const Board& board) const;
             int maxHealth() const;
             
     };

@@ -48,7 +48,7 @@ namespace WarGame {
            
            virtual const char* letter() const = 0;
 
-           virtual void attack(Board& board) const = 0;
+           virtual void attack(const Board& board) const = 0;
            
 		   double Distance(const Soldier* target, const Board& board) const;
 

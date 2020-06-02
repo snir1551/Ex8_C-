@@ -17,8 +17,9 @@ namespace WarGame {
     {
         return 100;
     }
-    void FootSoldier::attack(Board& board) const
+    void FootSoldier::attack(const Board& board) const
     {
+        
         Soldier* target = board.getCloseToEnemy(this);
         target->setHealth(target->getHealth()-this->getDamage());
     }

@@ -482,6 +482,8 @@ TEST_CASE("Board Test")
        CHECK(board1.has_soldiers(1));
        CHECK(!board1.has_soldiers(2));
 
+       clear(board1,8,8);
+
 
     }
 

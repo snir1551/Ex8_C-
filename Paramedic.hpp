@@ -9,7 +9,7 @@ namespace WarGame {
             Paramedic(int numPlayer);
             Paramedic(int numPlayer,int health,int damage);
             const char* letter() const;
-            void attack(Board& board) const;
+            void attack(const Board& board) const;
             int maxHealth() const;
 
     };

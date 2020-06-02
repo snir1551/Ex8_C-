@@ -16,12 +16,12 @@ namespace WarGame {
     {
         return 100;
     }
-    void Paramedic::attack(Board& board) const
+    void Paramedic::attack(const Board& board) const
     {
-        // std::vector<Soldier*> vec = board.getSoldierNear(this);
-        // for(int i = 0; i < vec.size(); i++)
-        // {
-        //     vec[i]->setHealth(vec[i]->maxHealth());
-        // }
+        std::vector<Soldier*> vec = board.getSoldierNear(this);
+        for(int i = 0; i < vec.size(); i++)
+        {
+            vec[i]->setHealth(vec[i]->maxHealth());
+        }
     }
 }

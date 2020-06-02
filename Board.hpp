@@ -71,7 +71,7 @@ class Board {
 
     void drawHealth() const;
 
-    Soldier* getCloseToEnemy(Soldier* source) const;
+    Soldier* getCloseToEnemy(const Soldier* source) const;
 
     template <class T>
     std::vector<T*> getSoldiers();
