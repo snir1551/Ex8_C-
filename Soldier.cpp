@@ -1,4 +1,5 @@
 #include "Soldier.hpp"
+#include "Board.hpp"
 #include <math.h>
 
 namespace WarGame {

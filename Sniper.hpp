@@ -10,7 +10,7 @@ namespace WarGame {
             Sniper(int numPlayer, int health, int damage);
             const char* letter() const;
             int maxHealth() const;
-            void attack(const Board& board) const;
+            void attack(Board& board) const;
     };
 
 }

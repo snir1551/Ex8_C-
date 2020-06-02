@@ -8,12 +8,9 @@ namespace WarGame {
     {
         return "FC";
     }
-    // void FootCommander::command(Board& board) const
-    // {
-    //     std::vector<FootSoldier*> vec = board.getSoldiers<FootSoldier>();
-    //     for(int i = 0; i < vec.size(); i++)
-    //     {
-    //         vec[i]->attack(board);
-    //     }
-    // }
+
+	void FootCommander::command(Board& board)
+	{
+		Commander::command(board.getSoldiers<FootSoldier>(), board);
+	}
 }

@@ -4,11 +4,12 @@
 #include "Commander.hpp"
 namespace WarGame {
 
-    class ParamedicCommander:public Paramedic, public Commander<Paramedic>
+    class ParamedicCommander:public Paramedic, public Commander
     {
         public:
             ParamedicCommander(int numPlayer);
             const char* letter() const;
+			void command(Board& board);
     };
 
 }

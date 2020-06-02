@@ -1,16 +1,17 @@
 #ifndef _COMMANDER_HPP
 #define _COMMANDER_HPP
+#include <vector>
 #include "Board.hpp"
+#include "Soldier.hpp"
 
 namespace WarGame {
-
-    template <class T>
     class Commander
     {
-        
-        public:
-            void command(Board& board);
-           
+	public:
+		virtual void command(Board& board) = 0;
+
+    protected:
+		void command(std::vector<Soldier*> soldiers, Board& board);
     };
 
 }

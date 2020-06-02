@@ -9,4 +9,9 @@ namespace WarGame {
     {
         return "SC";
     }
+
+	void SniperCommander::command(Board& board)
+	{
+		Commander::command(board.getSoldiers<Sniper>(), board);
+	}
 }

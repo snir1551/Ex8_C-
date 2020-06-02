@@ -4,11 +4,12 @@
 #include "Commander.hpp"
 namespace WarGame {
 
-    class SniperCommander:public Sniper, public Commander<Sniper>
+    class SniperCommander:public Sniper, public Commander
     {
         public:
             SniperCommander(int numPlayer);
             const char* letter() const;
+			void command(Board& board);
     };
 
 }

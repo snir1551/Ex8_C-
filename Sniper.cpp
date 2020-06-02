@@ -1,4 +1,6 @@
 #include "Sniper.hpp"
+#include "Board.hpp"
+
 namespace WarGame {
 
     Sniper::Sniper(int numPlayer): Soldier(numPlayer,100,50)
@@ -17,7 +19,7 @@ namespace WarGame {
     {
         return "SN";
     }
-    void Sniper::attack(const Board& board) const
+    void Sniper::attack(Board& board) const
     {
         Soldier* target = board.mostCurrentHealth(this);
         target->setHealth(target->getHealth()-this->getDamage());

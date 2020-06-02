@@ -1,14 +1,11 @@
 #include "Commander.hpp"
-#include <vector>
+
 namespace WarGame {
-    
-	template <class T>
-    void Commander<T>::command(Board& board)
+	void Commander::command(std::vector<Soldier*> soldiers, Board& board)
     {
-        std::vector<T*> vec = board.getSoldiers<T>();
-        for(int i = 0; i < vec.size(); i++)
-        {
-            vec[i]->attack(board);
-        }
+		for (int i = 0; i < soldiers.size(); i++)
+		{
+			soldiers[i]->attack(board);
+		}
     }
 }

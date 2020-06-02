@@ -1,4 +1,5 @@
 #include "FootSoldier.hpp"
+#include "Board.hpp"
 namespace WarGame {
 
     FootSoldier::FootSoldier(int numPlayer): Soldier(numPlayer,100,10)
@@ -17,9 +18,8 @@ namespace WarGame {
     {
         return 100;
     }
-    void FootSoldier::attack(const Board& board) const
+    void FootSoldier::attack(Board& board) const
     {
-        
         Soldier* target = board.getCloseToEnemy(this);
         target->setHealth(target->getHealth()-this->getDamage());
     }

@@ -4,11 +4,13 @@
 #include "FootSoldier.hpp"
 namespace WarGame {
 
-    class FootCommander:public FootSoldier, public Commander<FootSoldier>
+    class FootCommander:public FootSoldier, public Commander
     {
         public:
             FootCommander(int numPlayer);
             const char* letter() const;
+			void command(Board& board);
+            
     };
 
 }

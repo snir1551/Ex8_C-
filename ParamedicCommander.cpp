@@ -8,8 +8,10 @@ namespace WarGame {
     {
         return "PC";
     }
-    // void ParamedicCommander::command(Board& board) const
-    // {
 
-    // }
+	void ParamedicCommander::command(Board& board)
+	{
+		Commander::command(board.getSoldiers<Paramedic>(), board);
+	}
+
 }

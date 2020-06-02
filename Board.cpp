@@ -1,3 +1,5 @@
+#include "Soldier.hpp"
+#include "Commander.hpp"
 #include "Board.hpp"
 #include <stdexcept>
 #include <iostream>
@@ -64,9 +66,21 @@ namespace WarGame {
             throw std::invalid_argument("exist player in the location target move");
         }
 
-        board[targetRow][targetCol]->attack(this);
         board[targetRow][targetCol] = board[source.first][source.second];
-        board[source.first][source.second] = nullptr;
+		board[source.first][source.second] = nullptr;
+
+		Commander* commander = dynamic_cast<Commander*>(board[targetRow][targetCol]);
+
+		if (commander) // moving soldier is a commander
+		{
+			commander->command(*this);
+		}
+		else // moving soldier is not a commander
+		{
+			board[targetRow][targetCol]->attack(*this);
+		}
+
+		removeDeadSoldiers();
     }
 
     bool Board::has_soldiers(uint player_number) const
@@ -138,22 +152,6 @@ namespace WarGame {
             }
         }
         return minSoldier;
-    }
-
-    template <class T>
-    std::vector<T*> Board::getSoldiers()
-    {
-        std::vector<T*> vec;
-        for(int row = 0; row < board.size(); row++)
-        {
-            for(int col = 0; col < board[0].size(); col++)
-            {
-                T* ptr = dynamic_cast<T*>(board[row][col]);
-                if(ptr != nullptr)
-                    vec.push_back(ptr);
-            }
-        }
-        return vec;
     }
 
     std::vector<Soldier*> Board::getSoldierNear(const Soldier* source) const
@@ -239,4 +237,19 @@ namespace WarGame {
             }
         }
     }
+
+	void Board::removeDeadSoldiers()
+	{
+		for (int i = 0; i < board.size(); i++)
+		{
+			for (int j = 0; j < board[0].size(); j++)
+			{
+				if (board[i][j] != nullptr && board[i][j]->getHealth() <= 0)
+				{
+					delete board[i][j];
+					board[i][j] = nullptr;
+				}
+			}
+		}
+	}
 }

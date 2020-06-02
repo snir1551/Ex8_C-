@@ -15,14 +15,12 @@
 #include <stdexcept>
 #include "Soldier.hpp"
 
-
 namespace WarGame {
-class Soldier;
-
 class Board {
-	
   private:
     std::vector<std::vector<Soldier*>> board;
+
+	void removeDeadSoldiers();
   public:
     enum MoveDIR { Up, Down, Right, Left };
     
@@ -74,7 +72,20 @@ class Board {
     Soldier* getCloseToEnemy(const Soldier* source) const;
 
     template <class T>
-    std::vector<T*> getSoldiers();
+	std::vector<Soldier*> getSoldiers()
+	{
+		std::vector<Soldier*> vec;
+		for (int row = 0; row < board.size(); row++)
+		{
+			for (int col = 0; col < board[0].size(); col++)
+			{
+				T* ptr = dynamic_cast<T*>(board[row][col]);
+				if (ptr != nullptr)
+					vec.push_back(ptr);
+			}
+		}
+		return vec;
+	}
 
     std::vector<Soldier*> getSoldierNear(const Soldier* source) const;
 
