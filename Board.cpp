@@ -6,7 +6,7 @@
 namespace WarGame {
     Soldier*& Board::operator[](std::pair<int,int> location)
     {
-        if(location.first > board.size() || location.first < 0 || location.second > board.size() || location.second < 0 )
+        if(location.first >= board.size() || location.first < 0 || location.second >= board.size() || location.second < 0 )
         {
             throw std::invalid_argument("Illegal location");
         }
@@ -19,7 +19,7 @@ namespace WarGame {
 
     Soldier* Board::operator[](std::pair<int,int> location) const
     {
-        if(location.first > board.size() || location.first < 0 || location.second > board.size() || location.second < 0 )
+        if(location.first >= board.size() || location.first < 0 || location.second >= board.size() || location.second < 0 )
         {
             throw std::invalid_argument("Illegal location");
         }
@@ -28,7 +28,7 @@ namespace WarGame {
 
     void Board::move(uint player_number, std::pair<int,int> source, MoveDIR direction)
     {
-        if(source.first > board.size() || source.first < 0 || source.second > board.size() || source.second < 0 )
+        if(source.first >= board.size() || source.first < 0 || source.second >= board.size() || source.second < 0 )
         {
             throw std::invalid_argument("Illegal location");
         }
@@ -61,7 +61,7 @@ namespace WarGame {
                 targetCol = source.second - 1;
                 break;
         }
-        if(targetRow > board.size() || targetRow < 0 || targetCol > board.size() || targetCol < 0 || board[targetRow][targetCol] != nullptr)
+        if(targetRow >= board.size() || targetRow < 0 || targetCol >= board.size() || targetCol < 0 || board[targetRow][targetCol] != nullptr)
         {
             throw std::invalid_argument("exist player in the location target move");
         }
@@ -142,9 +142,9 @@ namespace WarGame {
                 if(board[row][col] != nullptr && board[row][col]->getNumPlayer() != source->getNumPlayer())
                 {
                     int distance = source->Distance(board[row][col], *this);
-                    if(minSoldier == nullptr || min > distance)
+                    if(minSoldier == nullptr || min >= distance)
                     {
-                        min = distance;
+			            min = distance;
                         minSoldier = board[row][col];
                     }
                        
