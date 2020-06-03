@@ -11,7 +11,7 @@ namespace WarGame {
 
 	void ParamedicCommander::command(Board& board)
 	{
-		Commander::command(board.getSoldiers<Paramedic>(), board);
+		Commander::command(board.getSoldiers<Paramedic>(this), board);
 	}
 
 }

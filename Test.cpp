@@ -91,6 +91,8 @@ Board myGame()
 uint play()
 {
         Board board = myGame();
+        // board.draw();
+        // board.drawHealth();
         /*
             FootSoldier(1) 100 HP and 10 dmg
             Paramedic(1) 100 HP and 0 dmg
@@ -98,8 +100,7 @@ uint play()
             FootSoldier(2) 100 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
-        board.draw();
-        board.move(1, {0,1}, Board::MoveDIR::Right);      // FootSoldier of player 1 moves forward and attacks from {0,1} to {0,2}.
+        board.move(1, {0,1}, Board::MoveDIR::Right);      // FootSoldier of player 1 moves forward {0,1} to {0,2} and attacks FootSoldier of player 2.
 		if (!board.has_soldiers(2)) return 1;
         /*
             FootSoldier(1) 100 HP and 10 dmg
@@ -108,114 +109,217 @@ uint play()
             FootSoldier(2) 90 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
-		board.move(2, {7,1}, Board::MoveDIR::Down);    // FootSoldier of player 2 moves forward and attacks from {7,1} to {6,1}.
+        // board.draw();
+        // board.drawHealth();
+		board.move(2, {7,1}, Board::MoveDIR::Down);    // FootSoldier of player 2 moves forward {7,1} to {6,1} and attacks Paramedic of player 1.
 		if (!board.has_soldiers(1)) return 2;
         /*
-            FootSoldier(1) 90 HP and 10 dmg
-            Paramedic(1) 100 HP and 0 dmg
+            FootSoldier(1) 100 HP and 10 dmg
+            Paramedic(1) 90 HP and 0 dmg
 
             FootSoldier(2) 90 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
+        // board.draw();
+        // board.drawHealth();
 		board.move(1, {0,3}, Board::MoveDIR::Up);      // Paramedic of player 1 moves forward from {0,3} to {1,3}, and all soldiers of player 1 attack.
 		if (!board.has_soldiers(2)) return 1;
         /*
             FootSoldier(1) 100 HP and 10 dmg
-            Paramedic(1) 100 HP and 0 dmg
+            Paramedic(1) 90 HP and 0 dmg
 
             FootSoldier(2) 90 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
+        // board.draw();
+        // board.drawHealth();
 		board.move(2, {7,3}, Board::MoveDIR::Left);    // FootCommander of player 2 moves left from {7,3} to {7,2}, and all soldiers of player 2 attack.
 		if (!board.has_soldiers(1)) return 2;
         /*
             FootSoldier(1) 100 HP and 10 dmg
-            Paramedic(1) 100 HP and 0 dmg
+            Paramedic(1) 60 HP and 0 dmg
 
             FootSoldier(2) 90 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
+        // board.draw();
+        // board.drawHealth();
        	board.move(1, {0,2}, Board::MoveDIR::Right);    // FootSoldier of player 1 moves right from {0,2} to {0,3}, and all soldiers of player 2 attack.
 		if (!board.has_soldiers(2)) return 2;
         /*
-            FootSoldier(1) 90 HP and 10 dmg
-            Paramedic(1) 80 HP and 0 dmg
-
-            FootSoldier(2) 90 HP and 10dmg
-            FootCommander(2) 150 HP and 20 dmg
-        */
-        board.move(1, {0,3}, Board::MoveDIR::Right);    // FootSoldier of player 1 moves right from {0,3} to {0,4}, and all soldiers of player 2 attack.
-		if (!board.has_soldiers(2)) return 2;
-        /*
-            FootSoldier(1) 90 HP and 10 dmg
-            Paramedic(1) 80 HP and 0 dmg
+            FootSoldier(1) 100 HP and 10 dmg
+            Paramedic(1) 60 HP and 0 dmg
 
             FootSoldier(2) 80 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
-        board.move(1, {0,4}, Board::MoveDIR::Up);    // FootSoldier of player 1 moves right from {0,4} to {1,4}, and all soldiers of player 2 attack.
+        // board.draw();
+        // board.drawHealth();
+        board.move(1, {0,3}, Board::MoveDIR::Right);    // FootSoldier of player 1 moves right from {0,3} to {0,4}, and all soldiers of player 2 attack.
 		if (!board.has_soldiers(2)) return 2;
         /*
-            FootSoldier(1) 90 HP and 10 dmg
-            Paramedic(1) 80 HP and 0 dmg
-
-            FootSoldier(2) 70 HP and 10dmg
-            FootCommander(2) 150 HP and 20 dmg
-        */
-        board.move(2, {7,2}, Board::MoveDIR::Down);    //  FootCommander of player 2 moves left from {7,2} to {6,2}, and all soldiers of player 2 attack.
-		if (!board.has_soldiers(1)) return 2;
-        /*
-            FootSoldier(1) 80 HP and 10 dmg
+            FootSoldier(1) 100 HP and 10 dmg
             Paramedic(1) 60 HP and 0 dmg
 
             FootSoldier(2) 70 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
-        board.move(2, {6,2}, Board::MoveDIR::Down);    //  FootCommander of player 2 moves left from {6,2} to {5,2}, and all soldiers of player 2 attack.
+        // board.draw();
+        // board.drawHealth();
+        board.move(1, {0,4}, Board::MoveDIR::Up);    // FootSoldier of player 1 moves right from {0,4} to {1,4}, and all soldiers of player 2 attack.
+		if (!board.has_soldiers(2)) return 2;
+        /*
+            FootSoldier(1) 100 HP and 10 dmg
+            Paramedic(1) 60 HP and 0 dmg
+
+            FootSoldier(2) 60 HP and 10dmg
+            FootCommander(2) 150 HP and 20 dmg
+        */
+        // board.draw();
+        // board.drawHealth();
+        board.move(2, {7,2}, Board::MoveDIR::Down);    //  FootCommander of player 2 moves left from {7,2} to {6,2}, and all soldiers of player 2 attack.
+		if (!board.has_soldiers(1)) return 2;
+        /*
+            FootSoldier(1) 100 HP and 10 dmg
+            Paramedic(1) 30 HP and 0 dmg
+
+            FootSoldier(2) 60 HP and 10dmg
+            FootCommander(2) 150 HP and 20 dmg
+        */
+        // board.draw();
+        // board.drawHealth();
+        board.move(1, {1,3}, Board::MoveDIR::Down);    //  Paramedic moves from {1,3} to {0,3}.
+		if (!board.has_soldiers(2)) return 1;
+        /*
+            FootSoldier(1) 100 HP and 10 dmg
+            Paramedic(1) 30 HP and 0 dmg
+
+            FootSoldier(2) 60 HP and 10dmg
+            FootCommander(2) 150 HP and 20 dmg
+        */
+        // board.draw();
+        // board.drawHealth();
+        board.move(1, {0,3}, Board::MoveDIR::Right);  //  Paramedic moves from {0,3} to {0,4}.
+        if (!board.has_soldiers(2)) return 1;
+        /*
+            FootSoldier(1) 100 HP and 10 dmg
+            Paramedic(1) 30 HP and 0 dmg
+
+            FootSoldier(2) 60 HP and 10dmg
+            FootCommander(2) 150 HP and 20 dmg
+        */
+        // board.draw();
+        // board.drawHealth();
+        board.move(1, {0,4}, Board::MoveDIR::Right);  //  Paramedic moves from {0,4} to {0,5}.
+        if (!board.has_soldiers(2)) return 1;
+        /*
+            FootSoldier(1) 100 HP and 10 dmg
+            Paramedic(1) 30 HP and 0 dmg
+
+            FootSoldier(2) 60 HP and 10dmg
+            FootCommander(2) 150 HP and 20 dmg
+        */
+        // board.draw();
+        // board.drawHealth();
+        board.move(2, {6,2}, Board::MoveDIR::Down);    //  FootCommander of player 2 moves left from {6,2} to {5,2}, and all soldiers of player 2 attack FootSoldier of player 1
 		if (!board.has_soldiers(1)) return 2;
         /*
             FootSoldier(1) 70 HP and 10 dmg
-            Paramedic(1) 40 HP and 0 dmg
+            Paramedic(1) 30 HP and 0 dmg
 
-            FootSoldier(2) 70 HP and 10dmg
+            FootSoldier(2) 60 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
+        // board.draw();
+        // board.drawHealth();
         board.move(2, {5,2}, Board::MoveDIR::Down);    //  FootCommander of player 2 moves left from {5,2} to {4,2}, and all soldiers of player 2 attack.
 		if (!board.has_soldiers(1)) return 2;
         /*
-            FootSoldier(1) 60 HP and 10 dmg
-            Paramedic(1) 20 HP and 0 dmg
+            FootSoldier(1) 40 HP and 10 dmg
+            Paramedic(1) 30 HP and 0 dmg
 
-            FootSoldier(2) 70 HP and 10dmg
+            FootSoldier(2) 60 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
+        // board.draw();
+        // board.drawHealth();
+        board.move(1, {0,5}, Board::MoveDIR::Left);    //  Paramedic moves from {0,5} to {0,4}
+		if (!board.has_soldiers(1)) return 2;
+        /*
+            FootSoldier(1) 100 HP and 10 dmg
+            Paramedic(1) 30 HP and 0 dmg
+
+            FootSoldier(2) 60 HP and 10dmg
+            FootCommander(2) 150 HP and 20 dmg
+        */
+        // board.draw();
+        // board.drawHealth();
+        board.move(1, {0,4}, Board::MoveDIR::Left);    //  Paramedic moves from {0,4} to {0,3}
+		if (!board.has_soldiers(1)) return 2;
+        /*
+            FootSoldier(1) 100 HP and 10 dmg
+            Paramedic(1) 30 HP and 0 dmg
+
+            FootSoldier(2) 60 HP and 10dmg
+            FootCommander(2) 150 HP and 20 dmg
+        */
+        // board.draw();
+        // board.drawHealth();
         board.move(2, {4,2}, Board::MoveDIR::Down);    //  FootCommander of player 2 moves left from {4,2} to {3,2}, and all soldiers of player 2 attack.
 		if (!board.has_soldiers(1)) return 2;
         /*
+            FootSoldier(1) 70 HP and 10 dmg
+            Paramedic(1) 30 HP and 0 dmg
+
+            FootSoldier(2) 60 HP and 10dmg
+            FootCommander(2) 150 HP and 20 dmg
+        */
+        // board.draw();
+        // board.drawHealth();
+        board.move(2, {3,2}, Board::MoveDIR::Down);    //  FootCommander of player 2 moves left from {3,2} to {2,2}, and all soldiers of player 2 attack.
+		if (!board.has_soldiers(1)) return 2;
+         /*
+            FootSoldier(1) 60 HP and 10 dmg
+            Paramedic(1) 10 HP and 0 dmg
+
+            FootSoldier(2) 60 HP and 10dmg
+            FootCommander(2) 150 HP and 20 dmg
+        */
+        // board.draw();
+        // board.drawHealth();
+        board.move(2, {2,2}, Board::MoveDIR::Down);    //  FootCommander of player 2 moves Down from {2,2} to {1,2}, and all soldiers of player 2 attack.
+		if (!board.has_soldiers(1)) return 2;
+        /*
             FootSoldier(1) 50 HP and 10 dmg
-            Paramedic(1) 0 HP and 0 dmg
+            Paramedic(1) died HP and 0 dmg
 
             FootSoldier(2) 70 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
-        board.move(2, {3,2}, Board::MoveDIR::Down);    //  FootCommander of player 2 moves left from {3,2} to {2,2}, and all soldiers of player 2 attack.
+        // board.draw();
+        // board.drawHealth();
+        board.move(2, {1,2}, Board::MoveDIR::Down);    //  FootCommander of player 2 moves Down from {1,2} to {0,2}, and all soldiers of player 2 attack.
 		if (!board.has_soldiers(1)) return 2;
         /*
             FootSoldier(1) 20 HP and 10 dmg
-            Paramedic(1) 0 HP and 0 dmg
+            Paramedic(1) died HP and 0 dmg
 
             FootSoldier(2) 70 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
-        board.move(2, {2,2}, Board::MoveDIR::Down);    //  FootCommander of player 2 moves left from {2,2} to {1,2}, and all soldiers of player 2 attack.
+        // board.draw();
+        // board.drawHealth();
+        board.move(2, {0,2}, Board::MoveDIR::Right);    //  FootCommander of player 2 moves Down from {0,2} to {1,3}, and all soldiers of player 2 attack.
 		if (!board.has_soldiers(1)) return 2;
         /*
-            FootSoldier(1) 0 HP and 10 dmg
-            Paramedic(1) 0 HP and 0 dmg
+            FootSoldier(1) 20 HP and 10 dmg
+            Paramedic(1) died HP and 0 dmg
 
             FootSoldier(2) 70 HP and 10dmg
             FootCommander(2) 150 HP and 20 dmg
         */
+        // board.draw();
+        // board.drawHealth();
        return 0;
 }
 
@@ -396,8 +500,8 @@ TEST_CASE("Board Test")
         Board board1 = fillSecondBoard();
         CHECK(board1.has_soldiers(1));
         CHECK(board1.has_soldiers(2));
-        board1.draw();
-        board1.drawHealth();
+        // board1.draw();
+        // board1.drawHealth();
         board1.move(1, {0,0}, Board::MoveDIR::Up); //Sniper 50 dmg to FootCommander,  from {0,0} to {1,0}
         /*
             Sniper 100 HP and 50 dmg
@@ -406,8 +510,8 @@ TEST_CASE("Board Test")
             FootCommander 100 HP and 20 dmg
             FootSoldier 100 HP and 10 dmg
         */
-        board1.draw();
-        board1.drawHealth();
+        // board1.draw();
+        // board1.drawHealth();
         board1.move(2, {7,7}, Board::MoveDIR::Down); //FootSoldier 10 dmg to FootSoldier, from {7,7} to {6,7}
         /*
             Sniper 100 HP and 50 dmg
@@ -416,61 +520,62 @@ TEST_CASE("Board Test")
             FootCommander 100 HP and 20 dmg
             FootSoldier 100 HP and 10 dmg
         */
-        board1.draw();
-        board1.drawHealth();
+        // board1.draw();
+        // board1.drawHealth();
         board1.move(2, {6,7}, Board::MoveDIR::Down); //FootSoldier 10 dmg to FootSoldier, from {6,7} to {5,7}
         /*
             Sniper 100 HP and 50 dmg
             FootSoldier 80 HP and 10 dmg
 
-            FootCommander 50 HP and 20 dmg
+            FootCommander 100 HP and 20 dmg
             FootSoldier 100 HP and 10 dmg
         */
-        board1.draw();
-        board1.drawHealth();
+        // board1.draw();
+        // board1.drawHealth();
         board1.move(1, {1,0}, Board::MoveDIR::Up); //Sniper 50 dmg to FootCommander , from {0,0} to {2,0}
         /*
             Sniper 100 HP and 50 dmg
             FootSoldier 80 HP and 10 dmg
 
-            FootCommander 50 HP and 20 dmg
-            FootSoldier 100 HP and 10 dmg
+            FootCommander 100 HP and 20 dmg
+            FootSoldier 50 HP and 10 dmg
         */
-        board1.draw();
-        board1.drawHealth();
+        // board1.draw();
+        // board1.drawHealth();
         board1.move(2, {7,0}, Board::MoveDIR::Right); //FootCommander 20 dmg to Sniper and 10 dmg to FootSoldier, from {7,0} to {7,1}
         /*
-            Sniper 80 HP and 50 dmg
-            FootSoldier 70 HP and 10 dmg
+            Sniper 100 HP and 50 dmg
+            FootSoldier 50 HP and 10 dmg
 
-            FootCommander 50 HP and 20 dmg
-            FootSoldier 100 HP and 10 dmg
+            FootCommander 100 HP and 20 dmg
+            FootSoldier 50 HP and 10 dmg
         */
-        board1.draw();
-        board1.drawHealth();
+        // board1.draw();
+        // board1.drawHealth();
         board1.move(1, {2,0}, Board::MoveDIR::Up); //Sniper 50 dmg to FootSoldier, from {2,0} to {3,0}
         /*
-            Sniper 80 HP and 50 dmg
-            FootSoldier 70 HP and 10 dmg
+            Sniper 100 HP and 50 dmg
+            FootSoldier 50 HP and 10 dmg
 
             FootCommander 50 HP and 20 dmg
             FootSoldier 50 HP and 10 dmg
         */
-        board1.draw();
-        board1.drawHealth();
+        // board1.draw();
+        // board1.drawHealth();
         board1.move(1, {3,0}, Board::MoveDIR::Right); //Sniper 50 dmg to FootCommander, from {3,0} to {3,1}
         /*
             Sniper 80 HP and 50 dmg
             FootSoldier 70 HP and 10 dmg
 
-            FootCommander died
-            FootSoldier 50 HP and 10 dmg
+            FootCommander 50 HP and 20 dmg
+            FootSoldier died
         */
-       board1.draw();
-       board1.drawHealth();
-    //    CHECK(board1[{7,1}] == nullptr);
-    //    CHECK(board1.has_soldiers(2));
-        board1.move(1, {3,1}, Board::MoveDIR::Right); //Sniper 50 dmg to FootSoldier, from {3,1} to {3,2}
+    //    board1.draw();
+    //    board1.drawHealth();
+       CHECK(board1[{5,7}] == nullptr);
+       CHECK(board1[{7,1}] != nullptr);
+       CHECK(board1.has_soldiers(2));
+       board1.move(1, {3,1}, Board::MoveDIR::Right); //Sniper 50 dmg to FootSoldier, from {3,1} to {3,2}
         /*
             Sniper 80 HP and 50 dmg
             FootSoldier 70 HP and 10 dmg
@@ -478,7 +583,9 @@ TEST_CASE("Board Test")
             FootCommander died
             FootSoldier died
         */
-       CHECK(board1[{5,7}] == nullptr);
+    //    board1.draw();
+    //    board1.drawHealth();
+       CHECK(board1[{7,1}] == nullptr);
        CHECK(board1.has_soldiers(1));
        CHECK(!board1.has_soldiers(2));
 
@@ -594,18 +701,14 @@ TEST_CASE("Board Test")
         CHECK(board1.has_soldiers(1));
         CHECK(board1.has_soldiers(2));
 
-
+        clear(board1,10,10);
 
 
     }
 
     SUBCASE("add soldiers exceptions")
     {
-        Board board = fillNull();
-        board[{0,0}] = new Sniper(1);
-        board[{4,3}] = new FootCommander(1);
-        CHECK_THROWS((board[{0,0}] = new Sniper(2))); // exist soldier in {0,0}
-        CHECK_THROWS((board[{0,10}] = new FootSoldier(2))); // add soldier not in the board
+        
     }
     SUBCASE("move soldiers exceptions")
     {
@@ -622,7 +725,7 @@ TEST_CASE("Board Test")
         //board.move(1, {1,0}, Board::MoveDIR::Down);
         //CHECK_THROWS((board.move(1, {0,0}, Board::MoveDIR::Down))); // try to move out of the board
 
-
+        clear(board,10,10);
 
     }
 }

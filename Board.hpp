@@ -20,7 +20,8 @@ class Board {
   private:
     std::vector<std::vector<Soldier*>> board;
 
-	void removeDeadSoldiers();
+	  void removeDeadSoldiers();
+
   public:
     enum MoveDIR { Up, Down, Right, Left };
     
@@ -71,8 +72,8 @@ class Board {
 
     Soldier* getCloseToEnemy(const Soldier* source) const;
 
-    template <class T>
-	std::vector<Soldier*> getSoldiers()
+  template <class T>
+	std::vector<Soldier*> getSoldiers(Soldier* soldier)
 	{
 		std::vector<Soldier*> vec;
 		for (int row = 0; row < board.size(); row++)
@@ -80,7 +81,7 @@ class Board {
 			for (int col = 0; col < board[0].size(); col++)
 			{
 				T* ptr = dynamic_cast<T*>(board[row][col]);
-				if (ptr != nullptr)
+				if (ptr != nullptr && board[row][col]->getNumPlayer() == soldier->getNumPlayer())
 					vec.push_back(ptr);
 			}
 		}
@@ -95,7 +96,6 @@ class Board {
 
     void clear();
 
-    void removeDeadSoldiers();
            
 
 

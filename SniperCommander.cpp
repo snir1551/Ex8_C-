@@ -12,6 +12,6 @@ namespace WarGame {
 
 	void SniperCommander::command(Board& board)
 	{
-		Commander::command(board.getSoldiers<Sniper>(), board);
+		Commander::command(board.getSoldiers<Sniper>(this), board);
 	}
 }

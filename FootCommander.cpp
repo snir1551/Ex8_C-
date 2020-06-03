@@ -11,6 +11,6 @@ namespace WarGame {
 
 	void FootCommander::command(Board& board)
 	{
-		Commander::command(board.getSoldiers<FootSoldier>(), board);
+		Commander::command(board.getSoldiers<FootSoldier>(this), board);
 	}
 }
