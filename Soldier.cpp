@@ -16,8 +16,8 @@ namespace WarGame {
     {
         std::pair<int,int> locationSource = board.locationSoldier(this);
         std::pair<int,int> locationTarget = board.locationSoldier(target);
-        double dx = locationSource.first - locationTarget.first;
-        double dy = locationSource.first - locationTarget.second;
+        double dy = (double)locationSource.first - locationTarget.first;
+        double dx = (double)locationSource.second - locationTarget.second;
         return sqrt(dx*dx + dy*dy);
     }
 

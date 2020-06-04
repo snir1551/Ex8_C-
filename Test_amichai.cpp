@@ -12,7 +12,6 @@
 #include "SniperCommander.hpp"
 #include "Paramedic.hpp"
 #include "ParamedicCommander.hpp"
-#include "Board.hpp"
 #include <cassert>
 using namespace WarGame;
 //check exceptions in diff cases
@@ -38,67 +37,111 @@ TEST_CASE("Sniper VS Sniper") { //good
 
 TEST_CASE("Foot vs Foot") {
     WarGame::Board board(8,8);
+    board.draw();
+    board.drawHealth();
     CHECK(!board.has_soldiers(1));
 
     board[{0,1}] = new FootSoldier(1); //soldier 1 - 100
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(1));
 
     CHECK(!board.has_soldiers(2));
 	board[{7,1}] = new FootSoldier(2); //soldier 2 - 100
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
 
     board.move(1,{0,1},WarGame::Board::MoveDIR::Up); //soldier 2 - 90
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
 
     CHECK_THROWS(board.move(1,{0,1},WarGame::Board::MoveDIR::Up)); //no soldier thehre
+    board.draw();
+    board.drawHealth();
     board.move(1,{1,1},WarGame::Board::MoveDIR::Up); //soldier 2 - 80
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
     
     CHECK_THROWS(board.move(1,{7,1},WarGame::Board::MoveDIR::Up));
+    board.draw();
+    board.drawHealth();
     CHECK_THROWS(board.move(2,{7,1},WarGame::Board::MoveDIR::Up));
+    board.draw();
+    board.drawHealth();
     board.move(2,{7,1},WarGame::Board::MoveDIR::Down); //soldier 1 - 90
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
     board.move(2,{6,1},WarGame::Board::MoveDIR::Down); //sodier 1 - 80
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
     board.move(2,{5,1},WarGame::Board::MoveDIR::Down); //soldier 1 - 70
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
 
     board.move(1,{2,1},WarGame::Board::MoveDIR::Up); //soldier 2 - 70
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
 
     CHECK_THROWS(board.move(1,{3,1},WarGame::Board::MoveDIR::Up));//there is another soldier in the destenation
+    board.draw();
+    board.drawHealth();
     CHECK_THROWS(board.move(2,{4,1},WarGame::Board::MoveDIR::Down)); //gam ze
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
 
     board.move(1,{3,1},WarGame::Board::MoveDIR::Down); //soldier 2 - 60
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
     board.move(2,{4,1},WarGame::Board::MoveDIR::Up); //soldier 1 - 60
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
     board.move(2,{5,1},WarGame::Board::MoveDIR::Down); //soldier 1 - 50
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
 	board.move(2,{4,1},WarGame::Board::MoveDIR::Down); //soldier 1 - 40
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
     board.move(2,{3,1},WarGame::Board::MoveDIR::Up); //soldier 1 - 30
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
     board.move(2,{4,1},WarGame::Board::MoveDIR::Down); //soldier 1 - 20
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
     board.move(2,{3,1},WarGame::Board::MoveDIR::Up); //soldier 1 - 10
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
     board.move(2,{4,1},WarGame::Board::MoveDIR::Down); //soldier 1 - 0
+    board.draw();
+    board.drawHealth();
     CHECK(board.has_soldiers(2));
     CHECK(!board.has_soldiers(1));
 
@@ -108,7 +151,7 @@ TEST_CASE("3 VS 3") {
 
     CHECK(!board.has_soldiers(1));
     board[{0,1}] = new FootSoldier(1);//player 1 footSoldier1 {0,1}
-   // CHECK_THROWS((board[{0,1}] = new FootSoldier(1))); //there is already soldier there
+    //CHECK_THROWS((board[{0,1}] = new FootSoldier(1))); //there is already soldier there
     board[{0,0}] = new FootCommander(1); //player 1 commanderSoldier {0,0}
     board[{0,2}] = new FootSoldier(1);//player 1 footSoldier2 {0,2}
     CHECK(board.has_soldiers(1)); //there is no need to write this any time
@@ -217,60 +260,33 @@ TEST_CASE("One soldier of this type"){
 
 	//consider using for.....
     CHECK(board.has_soldiers(2));
-    board.draw();
-    board.drawHealth();
     board.move(1,{0,0},WarGame::Board::MoveDIR::Up); //player2 soldier1 - 90
-    board.draw();
-    board.drawHealth();
     CHECK(board.has_soldiers(2));
     board.move(1,{0,1},WarGame::Board::MoveDIR::Up);//player2 soldier2 - 130, player 2 soldier1 - 80
-    board.draw();
-    board.drawHealth();
     CHECK(board.has_soldiers(2));
     board.move(1,{0,2},WarGame::Board::MoveDIR::Up);//player2 soldier6 - 150
-    board.draw();
-    board.drawHealth();
     CHECK(board.has_soldiers(2));
     board.move(1,{0,3},WarGame::Board::MoveDIR::Up);//player2 soldier6 - 50, player 2 soldier2 80 //need to define that commander shoots first
-    board.draw();
-    board.drawHealth();
     CHECK(board.has_soldiers(2));
     board.move(1,{0,4},WarGame::Board::MoveDIR::Up);//player1 soldier4 - 120 //need to define that curing id done after the step/move
-    board.draw();
-    board.drawHealth();
     CHECK(board.has_soldiers(2));
     board.move(1,{0,5},WarGame::Board::MoveDIR::Up); //player1 soldier5 - 100, player 1 soldier4 - 120, player 1 soldier6 - 200
-    board.draw();
-    board.drawHealth();
     CHECK(board.has_soldiers(2));
 	
 	
     //sniper 1 will kill them all
     board.move(1,{1,3},WarGame::Board::MoveDIR::Down); //player2 soldier6 - 100, player 2 soldier2 80
-    board.draw();
-    board.drawHealth();
 	CHECK(board.has_soldiers(2));
     board.move(1,{0,3},WarGame::Board::MoveDIR::Up); //player2 soldier4 - 20, player2 soldier3 - 50 //need to define to check the closes when there are equalh healh points
-    board.draw();
-    board.drawHealth();
 	CHECK(board.has_soldiers(2));
     board.move(1,{1,3},WarGame::Board::MoveDIR::Down); //player2 soldier5 - 0, player2 soldier6 - 50
-    board.draw();
-    board.drawHealth();
     CHECK(board.has_soldiers(2));
     board.move(1,{0,3},WarGame::Board::MoveDIR::Up); //player2 soldier1 - 0, player2 soldier2 - 30
         //just to be Sure all is dead
-    board.draw();
-    board.drawHealth();
+
         board.move(1,{1,2},WarGame::Board::MoveDIR::Down); //player2 soldier3 - 0, player2 soldier 6 - 20/10
-        board.draw();
-    board.drawHealth();
         board.move(1,{0,2},WarGame::Board::MoveDIR::Up); //player2 soldier3 - 0, player2 soldier 6 - 0
-            board.draw();
-    board.drawHealth();
         board.move(1,{1,2},WarGame::Board::MoveDIR::Down); //player2 soldier3 - 0, player2 soldier 6 - 0
-            board.draw();
-    board.drawHealth();
 
     //just to be Sure all is dead
     CHECK(!board.has_soldiers(2));

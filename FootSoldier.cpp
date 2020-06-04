@@ -21,6 +21,11 @@ namespace WarGame {
     void FootSoldier::attack(Board& board) const
     {
         Soldier* target = board.getCloseToEnemy(this);
-        target->setHealth(target->getHealth()-this->getDamage());
+
+		if (target != nullptr)
+		{
+			target->setHealth(target->getHealth() - this->getDamage());
+			board.removeDeadSoldiers();
+		}
     }
 }

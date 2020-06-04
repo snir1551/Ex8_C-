@@ -22,6 +22,12 @@ namespace WarGame {
     void Sniper::attack(Board& board) const
     {
         Soldier* target = board.mostCurrentHealth(this);
-        target->setHealth(target->getHealth()-this->getDamage());
+
+		if (target)
+		{
+			target->setHealth(target->getHealth() - this->getDamage());
+			board.removeDeadSoldiers();
+		}
+       
     }
 }

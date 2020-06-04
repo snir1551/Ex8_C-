@@ -20,8 +20,6 @@ class Board {
   private:
     std::vector<std::vector<Soldier*>> board;
 
-	  void removeDeadSoldiers();
-
   public:
     enum MoveDIR { Up, Down, Right, Left };
     
@@ -38,6 +36,8 @@ class Board {
     
     // operator for reading which soldiers are on the game-board.
     Soldier* operator[](std::pair<int,int> location) const;
+
+	void removeDeadSoldiers();
     
     // The function "move" tries to move the soldier of player "player"
     //     from the "source" location to the "target" location,
