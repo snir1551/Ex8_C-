@@ -9,7 +9,7 @@
  */
 
 #include "Board.hpp"
-
+using namespace WarGame;
 namespace WarGame {
 	class DemoGame {
 	 private:
