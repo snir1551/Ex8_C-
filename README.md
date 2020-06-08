@@ -1,5 +1,5 @@
 <div dir="rtl" lang="he">
-
+<img src="./UML WarGame.jpg">
 # משחק מלחמה - שלב ב
 
 כיתבו מימוש מלא של המשחק.
